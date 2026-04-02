@@ -45,4 +45,8 @@ jobs:
             docker pull ${{ secrets.ECR_BACKEND }}:latest
             docker stop nestjs || true
             docker rm nestjs || true
-            docker run -d -p 5000:5000 --name nestjs ${{ secrets.ECR_BACKEND }}:latest
+
+            docker run -d -p 5000:5000 \
+            --name nestjs \
+            -e MONGO_URI=${{ secrets.MONGO_URI }} \
+            ${{ secrets.ECR_BACKEND }}:latest
