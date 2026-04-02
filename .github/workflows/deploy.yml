@@ -42,7 +42,7 @@ jobs:
             aws ecr get-login-password --region $AWS_DEFAULT_REGION | \
             docker login --username AWS --password-stdin ${{ secrets.ECR_BACKEND }}
 
-            echo "MONGO_URI=${{ secrets.MONGO_URI }}" > .env
+            echo "MONGODB_URI=${{ secrets.MONGO_URI }}" > .env
             echo "PORT=5000" >> .env
 
             docker pull ${{ secrets.ECR_BACKEND }}:latest
